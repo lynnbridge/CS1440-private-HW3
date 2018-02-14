@@ -76,23 +76,32 @@ void sort_employment_by_area_fips(Employment *array, size_t num) {
 
 
 static int cmp_employment_annual_avg_emplvl(const void *left, const void *right) {
-#warning "TODO: implement cmp_employment_annual_avg_emplvl()"
-    return 0;
+//#warning "TODO: implement cmp_employment_annual_avg_emplvl()"
+if ((static_cast<const Employment*>(left))->annual_avg_emplvl > (static_cast<const Employment*>(right))->annual_avg_emplvl)
+		return -1;
+	else if ((static_cast<const Employment*>(left))->annual_avg_emplvl < (static_cast<const Employment*>(right))->annual_avg_emplvl)
+		return 1;
+	else
+		return cmp_employment_area_fips(right, left);
 }
 
 /* Sort an array of Employment objects on the basis of the employment level */
 void sort_employment_by_annual_avg_emplvl(Employment *array, size_t count) {
-#warning "TODO: implement sort_employment_by_annual_avg_emplvl()"
+    qsort(array, count, sizeof(Employment), cmp_employment_annual_avg_emplvl);
 }
 
 
 
 static int cmp_employment_total_annual_wages(const void *left, const void *right) {
-#warning "TODO: implement cmp_employment_total_annual_wages()"
-    return 0;
+if ((static_cast<const Employment*>(left))->total_annual_wages > (static_cast<const Employment*>(right))->total_annual_wages)
+		return -1;
+	else if ((static_cast<const Employment*>(left))->total_annual_wages < (static_cast<const Employment*>(right))->total_annual_wages)
+		return 1;
+	else
+		return cmp_employment_area_fips(right, left);
 }
 
 /* Sort an array of Employment objects on the basis of total annual wages */
 void sort_employment_by_total_annual_wages(Employment *array, size_t count) {
-#warning "TODO: implement sort_employment_by_total_annual_wages()"
+    qsort(array, count, sizeof(Employment), cmp_employment_total_annual_wages);
 }
